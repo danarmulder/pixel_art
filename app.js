@@ -48,6 +48,10 @@ function colorAssigner(){
       this.style.background= color;
       this.style.color= color;
     }
+    boxes[i].mousedown = function(){
+      this.style.background= color;
+      this.style.color= color;
+    }
   }
 }
 colorAssigner();
