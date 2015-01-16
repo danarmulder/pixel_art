@@ -3,6 +3,7 @@ var container = document.getElementById('container');
 var boxes = document.getElementsByClassName("box");
 var colors = document.getElementsByClassName("color");
 var color = "";
+var drag = 0;
 var colorRow = document.getElementById('color-picker');
 var colorArray = ["IndianRed","LightCoral","Salmon","DarkSalmon","LightSalmon","Crimson","Red","FireBrick","DarkRed","Pink","LightPink","HotPink","DeepPink","MediumVioletRed","PaleVioletRed","LightSalmon","Coral","Tomato","OrangeRed","DarkOrange","Orange","Gold","Yellow","LightYellow",
               "LemonChiffon","LightGoldenrodYellow","PapayaWhip","Moccasin","PeachPuff","PaleGoldenrod","Khaki","DarkKhaki","Lavender","Thistle","Plum","Violet","Orchid","Fuchsia","Magenta","MediumOrchid","MediumPurple", "BlueViolet","DarkViolet","DarkOrchid","DarkMagenta",
@@ -27,7 +28,7 @@ function makeGrid(number) {
   }
 }
 
-makeGrid(50);
+makeGrid(80);
 
 function newColor(colorArray){
   for(var i=0; i < colorArray.length; i++){
@@ -42,13 +43,32 @@ function newColor(colorArray){
 newColor(colorArray);
 
 
+function draggable(){
+  container.onmousedown = function(){
+    drag = 1;
+  }
+  container.onmouseup = function(){
+    drag = 0;
+  }
+}
+
+function mouseOver(){
+  for(var i=0; i< boxes.length; i++){
+    boxes[i].onmouseover = function(){
+      if (drag === 1) {
+        this.style.background= color;
+        this.style.color= color;
+      }
+    }
+  }
+}
+
+draggable();
+mouseOver();
+
 function colorAssigner(){
   for(var i=0; i< boxes.length; i++){
     boxes[i].onclick = function(){
-      this.style.background= color;
-      this.style.color= color;
-    }
-    boxes[i].mousedown = function(){
       this.style.background= color;
       this.style.color= color;
     }
